@@ -40,14 +40,13 @@ export default class OptionsScene extends Phaser.Scene {
   }
 
   create() {
-    this.menuButton = new Button(
-      this,
-      400,
-      500,
-      "blueButton1",
-      "blueButton2",
-      "Menu",
-      "Title"
+    
+    this.backbtn = this.add.sprite(400, 500, "back").setInteractive().setScale(0.5);
+    this.backbtn.on(
+      "pointerdown",
+      function () {
+        this.scene.start("Title");
+      }.bind(this)
     );
 
     this.updateAudio();

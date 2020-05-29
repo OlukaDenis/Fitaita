@@ -15,8 +15,8 @@ export default class TitleScene extends Phaser.Scene {
       this,
       config.width / 2,
       config.height / 2 - 100,
-      "blueButton1",
-      "blueButton2",
+      "orange_btn",
+      "orange_btn",
       "Play",
       "Game"
     );
@@ -26,8 +26,8 @@ export default class TitleScene extends Phaser.Scene {
       this,
       config.width / 2,
       config.height / 2,
-      "blueButton1",
-      "blueButton2",
+      "orange_btn",
+      "orange_btn",
       "Options",
       "Options"
     );
@@ -37,8 +37,8 @@ export default class TitleScene extends Phaser.Scene {
       this,
       config.width / 2,
       config.height / 2 + 100,
-      "blueButton1",
-      "blueButton2",
+      "orange_btn",
+      "orange_btn",
       "Credits",
       "Credits"
     );
