@@ -14,12 +14,13 @@ export default class GameOver extends Phaser.Scene {
     this.add.image(400, 300, 'bg');
     
      //Score display
-     this.overDisplay = this.add.image( config.width / 2, config.height / 2 - 100, 'orange_btn');
-     this.scoreText = this.add.text(0, 0, 'GAME OVER', {
-      fontSize: "32px",
+    //  this.overDisplay = this.add.image( config.width / 2, config.height / 2 - 100, 'orange_btn');
+     this.scoreText = this.add.text(280, 120, 'GAME OVER', {
+      fontSize: "40px",
+      fontWeight: 900,
       fill: "#fff",
     });
-    Phaser.Display.Align.In.Center(this.scoreText, this.overDisplay);
+    // Phaser.Display.Align.In.Center(this.scoreText, this.overDisplay);
 
      // LeaderBoards
     this.gameButton = new Button(
@@ -39,6 +40,10 @@ export default class GameOver extends Phaser.Scene {
         this.scene.start("Title");
       }.bind(this)
     );
+    this.scoreText = this.add.text(280, 530, 'Home', {
+      fontSize: "18px",
+      fill: "#fff",
+    });
 
     this.playAgainBtn = this.add.sprite(500, 500, "play_again").setInteractive().setScale(0.5);
     this.playAgainBtn.on(
@@ -47,6 +52,10 @@ export default class GameOver extends Phaser.Scene {
         this.scene.start("Game");
       }.bind(this)
     );
+    this.scoreText = this.add.text(450, 530, 'Play Again', {
+      fontSize: "18px",
+      fill: "#fff",
+    });
   }
 
 
