@@ -7,9 +7,66 @@ export default class TitleScene extends Phaser.Scene {
     super("Title");
   }
 
-  preload() {}
+  preload() {
+    
+  }
 
   create() {
+    this.add.image(400, 300, 'bg');
+
+    const image1 = this.add.image(0, 80, 'color_fish');
+
+    this.tweens.add({
+        targets: image1,
+        props: {
+            x: { value: 700, duration: 4000, flipX: true },
+            y: { value: 500, duration: 8000,  },
+        },
+        ease: 'Sine.easeInOut',
+        yoyo: true,
+        repeat: -1
+    });
+
+    const image2 = this.add.image(400, 80, 'blue_fish');
+
+    this.tweens.add({
+        targets: image2,
+        props: {
+            x: { value: 500, duration: 2000, flipX: true },
+            y: { value: 500, duration: 10000,  },
+        },
+        ease: 'Sine.easeInOut',
+        yoyo: true,
+        repeat: -1
+    });
+
+    const image3 = this.add.image(800, 200, 'red_fish').setFlipX(true);
+
+    this.tweens.add({
+        targets: image3,
+        props: {
+            x: { value: 70, flipX: true },
+            y: { value: 250 },
+        },
+        duration: 3000,
+        ease: 'Power1',
+        yoyo: true,
+        repeat: -1
+    });
+
+    const image4 = this.add.image(100, 550, 'green_fish');
+
+    this.tweens.add({
+        targets: image4,
+        props: {
+            x: { value: 700, duration: 2000, flipX: true },
+            y: { value: 50, duration: 15000,  },
+        },
+        ease: 'Sine.easeInOut',
+        yoyo: true,
+        repeat: -1
+    });
+
     // Game
     this.gameButton = new Button(
       this,

@@ -7,6 +7,7 @@ export default class CreditsScene extends Phaser.Scene {
   }
 
   preload() {
+    
     this.creditsText = this.add.text(0, 0, "Credits", {
       fontSize: "32px",
       fill: "#fff",

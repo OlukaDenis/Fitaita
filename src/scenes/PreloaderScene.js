@@ -94,20 +94,28 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image("checkedBox", "assets/blue_boxCheckmark.png");
     this.load.audio("bgMusic", ["assets/TownTheme.mp3"]);
 
-    this.load.image('sky', 'assets/sky.png');
+    this.load.image('home', 'assets/home.png');
+    this.load.image('play_again', 'assets/play_again.png');
     this.load.image('ground', 'assets/graphics/platform.png');
     this.load.image('coin', 'assets/graphics/coin.png');
     this.load.image('palmtree', 'assets/graphics/palmtree.png');
     this.load.image('bomb', 'assets/bomb.png');
     this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
-    this.load.image('fish', 'assets/graphics/color_fish.png');
+    this.load.image('fish', 'assets/fish.png', { frameWidth: 32, frameHeight: 48 });
+    this.load.image('color_fish', 'assets/graphics/color_fish.png');
+    this.load.image('blue_fish', 'assets/blue_fish.png');
+    this.load.image('green_fish', 'assets/green_fish.png');
+    this.load.image('red_fish', 'assets/red_fish.png');
+    this.load.image('plant2', 'assets/plant2.png')
+    this.load.image('plant4', 'assets/plant4.png')
+    this.load.image('water_ground', 'assets/water_ground.png');
   }
 
   ready() {
-    this.scene.start("Title");
+    this.scene.start("GameOver");
     this.readyCount++;
     if (this.readyCount === 2) {
-      this.scene.start("Title");
+      this.scene.start("GameOver");
     }
   }
 }
