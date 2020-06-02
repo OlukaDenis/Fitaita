@@ -1,5 +1,6 @@
+/* eslint-disable import/no-unresolved */
 import Phaser from 'phaser';
- 
+
 export default {
   type: Phaser.AUTO,
   parent: 'phaser-example',
@@ -7,9 +8,9 @@ export default {
   height: 600,
   physics: {
     default: 'arcade',
-        arcade: {
-            gravity: { y: 300 },
-            debug: false
-        }
-    }
+    arcade: {
+      gravity: { y: 300 },
+      debug: false,
+    },
+  },
 };

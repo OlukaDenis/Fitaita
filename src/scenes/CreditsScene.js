@@ -1,26 +1,26 @@
-import "phaser";
-import config from "../config/config";
+/* eslint-disable import/no-unresolved */
+import Phaser from 'phaser';
+import config from '../config/config';
 
 export default class CreditsScene extends Phaser.Scene {
   constructor() {
-    super("Credits");
+    super('Credits');
   }
 
-  preload() {
-    
-    this.creditsText = this.add.text(0, 0, "Credits", {
-      fontSize: "32px",
-      fill: "#fff",
+  create() {
+    this.creditsText = this.add.text(0, 0, 'Credits', {
+      fontSize: '32px',
+      fill: '#fff',
     });
-    this.madeByText = this.add.text(0, 0, "Created By: Denis Oluka", {
-      fontSize: "26px",
-      fill: "#fff",
+    this.madeByText = this.add.text(0, 0, 'Created By: Denis Oluka', {
+      fontSize: '26px',
+      fill: '#fff',
     });
     this.zone = this.add.zone(
       config.width / 2,
       config.height / 2,
       config.width,
-      config.height
+      config.height,
     );
 
     Phaser.Display.Align.In.Center(this.creditsText, this.zone);
@@ -30,14 +30,12 @@ export default class CreditsScene extends Phaser.Scene {
     this.madeByText.setY(100);
 
 
-    this.backbtn = this.add.sprite(400, 500, "back").setInteractive().setScale(0.5);
+    this.backbtn = this.add.sprite(400, 500, 'back').setInteractive().setScale(0.5);
     this.backbtn.on(
-      "pointerdown",
-      function () {
-        this.scene.start("Title");
-      }.bind(this)
+      'pointerdown',
+      () => {
+        this.scene.start('Title');
+      },
     );
   }
-
-  create() {}
 }

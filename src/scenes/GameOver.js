@@ -1,62 +1,58 @@
+/* eslint-disable import/no-unresolved */
+import Phaser from 'phaser';
 import config from '../config/config';
 import Button from '../objects/Button';
 
 export default class GameOver extends Phaser.Scene {
   constructor() {
-    super("GameOver");
-  }
-
-  preload() {
-
+    super('GameOver');
   }
 
   create() {
     this.add.image(400, 300, 'bg');
-    
-     //Score display
+
+    // Score display
     //  this.overDisplay = this.add.image( config.width / 2, config.height / 2 - 100, 'orange_btn');
-     this.scoreText = this.add.text(280, 120, 'GAME OVER', {
-      fontSize: "40px",
+    this.scoreText = this.add.text(280, 120, 'GAME OVER', {
+      fontSize: '40px',
       fontWeight: 900,
-      fill: "#fff",
+      fill: '#fff',
     });
     // Phaser.Display.Align.In.Center(this.scoreText, this.overDisplay);
 
-     // LeaderBoards
+    // LeaderBoards
     this.gameButton = new Button(
       this,
       config.width / 2,
       config.height / 2 - 10,
-      "orange_btn",
-      "orange_btn",
-      "LEADERBOARDS",
-      "LeaderBoards"
+      'orange_btn',
+      'orange_btn',
+      'LEADERBOARDS',
+      'LeaderBoards',
     );
 
-    this.homebtn = this.add.sprite(300, 500, "home").setInteractive().setScale(0.5);
+    this.homebtn = this.add.sprite(300, 500, 'home').setInteractive().setScale(0.5);
     this.homebtn.on(
-      "pointerdown",
-      function () {
-        this.scene.start("Title");
-      }.bind(this)
+      'pointerdown',
+      () => {
+        this.scene.start('Title');
+      },
     );
     this.scoreText = this.add.text(280, 530, 'Home', {
-      fontSize: "18px",
-      fill: "#fff",
+      fontSize: '18px',
+      fill: '#fff',
     });
 
-    this.playAgainBtn = this.add.sprite(500, 500, "play_again").setInteractive().setScale(0.5);
+    this.playAgainBtn = this.add.sprite(500, 500, 'play_again').setInteractive().setScale(0.5);
     this.playAgainBtn.on(
-      "pointerdown",
-      function () {
-        this.scene.start("Game");
-      }.bind(this)
+      'pointerdown',
+      () => {
+        this.scene.start('Game');
+      },
     );
     this.scoreText = this.add.text(450, 530, 'Play Again', {
-      fontSize: "18px",
-      fill: "#fff",
+      fontSize: '18px',
+      fill: '#fff',
     });
   }
-
-
 }

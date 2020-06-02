@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import "phaser";
 import Model from "./models/Model";
 import config from "./config/config";
