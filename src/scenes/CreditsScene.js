@@ -8,26 +8,30 @@ export default class CreditsScene extends Phaser.Scene {
   }
 
   create() {
-    this.creditsText = this.add.text(0, 0, 'Credits', {
+    this.creditsText = this.add.text(300, 300, 'Credits', {
       fontSize: '32px',
       fill: '#fff',
     });
-    this.madeByText = this.add.text(0, 0, 'Created By: Denis Oluka', {
+
+    this.openGameText = this.add.text(300, 340, 'opengameart.org', {
+      fontSize: '32px',
+      fill: '#fff',
+    });
+
+    this.microverseText = this.add.text(300, 370, 'Microverse Inc.', {
+      fontSize: '32px',
+      fill: '#fff',
+    });
+
+    this.madeByText = this.add.text(300, 100, 'Created By:', {
       fontSize: '26px',
       fill: '#fff',
     });
-    this.zone = this.add.zone(
-      config.width / 2,
-      config.height / 2,
-      config.width,
-      config.height,
-    );
 
-    Phaser.Display.Align.In.Center(this.creditsText, this.zone);
-
-    Phaser.Display.Align.In.Center(this.madeByText, this.zone);
-
-    this.madeByText.setY(100);
+    this.madeByText = this.add.text(300, 140, 'DENIS OLUKA', {
+      fontSize: '26px',
+      fill: '#fff',
+    });
 
 
     this.backbtn = this.add.sprite(400, 500, 'back').setInteractive().setScale(0.5);

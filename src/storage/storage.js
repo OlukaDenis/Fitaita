@@ -23,4 +23,4 @@ const GameStorage = (() => {
   };
 })();
 
-export default { GameStorage };
+export default GameStorage;

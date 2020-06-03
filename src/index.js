@@ -10,6 +10,7 @@ import PreloaderScene from "./scenes/PreloaderScene";
 import TitleScene from "./scenes/TitleScene";
 import OptionsScene from "./scenes/OptionsScene";
 import CreditsScene from "./scenes/CreditsScene";
+import EnterName from "./scenes/EnterName";
 
 class Game extends Phaser.Game {
   constructor() {
@@ -23,7 +24,7 @@ class Game extends Phaser.Game {
     this.scene.add("Credits", CreditsScene);
     this.scene.add("Game", GameScene);
     this.scene.add("GameOver", GameOver);
-    this.scene.add("LeaderBoards", LeaderBoards);
+    this.scene.add("EnterName", EnterName);
     this.scene.start("Boot");
   }
 }

@@ -1,6 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import Phaser from 'phaser';
 import config from '../config/config';
+import GameStorage from '../storage/storage';
 import Button from '../objects/Button';
 
 export default class TitleScene extends Phaser.Scene {
@@ -65,16 +66,30 @@ export default class TitleScene extends Phaser.Scene {
       repeat: -1,
     });
 
-    // Game
-    this.gameButton = new Button(
-      this,
-      config.width / 2,
-      config.height / 2 - 100,
-      'orange_btn',
-      'orange_btn',
-      'Play',
-      'Game',
-    );
+    if (GameStorage.getCurrentPlayer() === null || GameStorage.getCurrentPlayer() === undefined) {
+      // Entername
+      this.gameButton = new Button(
+        this,
+        config.width / 2,
+        config.height / 2 - 100,
+        'orange_btn',
+        'orange_btn',
+        'Play',
+        'EnterName',
+      );
+    } else {
+      // Game
+      this.gameButton = new Button(
+        this,
+        config.width / 2,
+        config.height / 2 - 100,
+        'orange_btn',
+        'orange_btn',
+        'Play',
+        'Game',
+      );
+    }
+    
 
     // Options
     this.optionsButton = new Button(

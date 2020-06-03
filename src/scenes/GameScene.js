@@ -1,77 +1,27 @@
 /* eslint-disable import/no-unresolved */
 import Phaser from 'phaser';
+import ScoreBoard from '../objects/ScoreBoard';
 
 let score = 0;
 let platforms;
 let player;
 let coins;
 let cursors;
-let bombs;
+let fishes;
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
     super('Game');
     platforms = this.platforms;
     player = this.player;
-    bombs = this.bombs;
+    fishes = this.fishes;
     coins = this.coins;
     cursors = this.cursors;
     this.gameOver = false;
-  }
 
-  createSwimmingFish() {
-    const image1 = this.add.image(0, 80, 'color_fish');
-
-    this.tweens.add({
-      targets: image1,
-      props: {
-        x: { value: 1600, duration: 4000, flipX: true },
-        y: { value: 990, duration: 8000 },
-      },
-      ease: 'Sine.easeInOut',
-      yoyo: true,
-      repeat: -1,
-    });
-
-    const image2 = this.add.image(400, 80, 'blue_fish');
-
-    this.tweens.add({
-      targets: image2,
-      props: {
-        x: { value: 1000, duration: 2000, flipX: true },
-        y: { value: 1000, duration: 10000 },
-      },
-      ease: 'Sine.easeInOut',
-      yoyo: true,
-      repeat: -1,
-    });
-
-    const image3 = this.add.image(800, 200, 'red_fish').setFlipX(true);
-
-    this.tweens.add({
-      targets: image3,
-      props: {
-        x: { value: 1000, flipX: true },
-        y: { value: 900 },
-      },
-      duration: 3000,
-      ease: 'Power1',
-      yoyo: true,
-      repeat: -1,
-    });
-
-    const image4 = this.add.image(100, 550, 'green_fish');
-
-    this.tweens.add({
-      targets: image4,
-      props: {
-        x: { value: 1600, duration: 5000, flipX: true },
-        y: { value: 600, duration: 30000 },
-      },
-      ease: 'Sine.easeInOut',
-      yoyo: true,
-      repeat: -1,
-    });
+    this.coinCount = 49;
+    this.coinEarn = (this.coinCount + 1) * 5
+    this.ScoreBoard = new ScoreBoard(0, this.coinEarn);
   }
 
   createPlatforms() {
@@ -111,7 +61,7 @@ export default class GameScene extends Phaser.Scene {
     const vertical = Phaser.Math.RND.between(100, 500);
     coins = this.physics.add.group({
       key: 'coin',
-      repeat: 50,
+      repeat: this.coinCount,
       setXY: { x: 20, y: vertical, stepX: 30 },
     });
 
@@ -122,10 +72,10 @@ export default class GameScene extends Phaser.Scene {
 
   collectCoin(player, coin) {
     coin.disableBody(true, true);
-    score += 10;
-    this.scoreText.setText(`SCORE: ${score}`);
+    this.ScoreBoard.score += 5;
 
-    if (coins.countActive(true) === 5) {
+    if (coins.countActive(true) === 0) {
+     this.ScoreBoard.coins += this.coinEarn;
       coins.children.iterate((child) => {
         child.enableBody(true, child.x, 0, true, true);
       });
@@ -136,11 +86,11 @@ export default class GameScene extends Phaser.Scene {
 
       const xdistance = Phaser.Math.Between(400, 1600);
       const ydistance = Phaser.Math.Between(200, 900);
-      const bomb1 = bombs.create(800, 200, 'red_fish').setFlipX(true);
-      const bomb2 = bombs.create(0, 80, 'green_fish');
+      const enemy1 = fishes.create(800, 200, 'red_fish').setFlipX(true);
+      const enemy2 = fishes.create(0, 80, 'green_fish');
 
       this.tweens.add({
-        targets: bomb1,
+        targets: enemy1,
         props: {
           x: { value: xdistance, flipX: true },
           y: { value: ydistance },
@@ -152,7 +102,7 @@ export default class GameScene extends Phaser.Scene {
       });
 
       this.tweens.add({
-        targets: bomb2,
+        targets: enemy2,
         props: {
           x: { value: xdistance, duration: 4000, flipX: true },
           y: { value: ydistance, duration: 8000 },
@@ -165,10 +115,11 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
+    this.ScoreBoard.displayScoreBoard();
+    
     this.bg = this.add.image(400, 300, 'bg');
     this.createPlatforms();
     this.createBottomPlants();
-    // this.createSwimmingFish();
     
     player = this.physics.add.sprite(70, 700, 'dude');
 
@@ -203,22 +154,14 @@ export default class GameScene extends Phaser.Scene {
     cursors = this.input.keyboard.createCursorKeys();
 
     this.createCoins();
-    bombs = this.physics.add.group();
-
-    // Score display
-    this.scoreDisplay = this.add.image(100, 30, 'orange_btn');
-    this.scoreText = this.add.text(0, 0, `SCORE: ${score}`, {
-      fontSize: '32px',
-      fill: '#fff',
-    });
-    Phaser.Display.Align.In.Center(this.scoreText, this.scoreDisplay);
+    fishes = this.physics.add.group();
 
     this.physics.add.collider(player, platforms);
     this.physics.add.collider(coins, platforms);
-    this.physics.add.collider(bombs, platforms);
+    this.physics.add.collider(fishes, platforms);
 
     this.physics.add.overlap(player, coins, this.collectCoin, null, this);
-    this.physics.add.collider(player, bombs, this.hitBomb, null, this);
+    this.physics.add.collider(player, fishes, this.hitBomb, null, this);
 
     this.cameras.main.setBounds(
       0,
