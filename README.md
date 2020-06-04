@@ -10,6 +10,9 @@ Assignment [link](https://www.notion.so/Platform-game-4a55a7d1fcc245bcb012c76814
 Fitaita is a single player based game. The game is intended to determine how fast a player can collect enough coins against the man-eater fishes. The game has infinite levels and the player is  expected to collect 5000 coins in order to escape the underworld.
 Two man-eater fishes are being introduced to the gameplay starting from level two. The player has to manoeuvre and avoid getting contact with the fishes.
 
+### Live link
+[Fitaita live link](https://fitaita.netlify.app/)
+
 ## Gameplay
 ###### Player
 Player (Fita) uses the direction keys( up: to jump and move to upper blocks, down: to move down in a faster way, left: to move left, right: to move right). He continues on in quest to collect enough coins to defeat the power of the fish.
