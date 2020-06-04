@@ -1,3 +1,6 @@
+/* eslint-disable import/no-unresolved */
+const fetch = require('node-fetch');
+
 export default class LeaderBoard {
   constructor() {
     this._gameId = 'NHD9GAF70gpUV9YSSrHD';
@@ -45,7 +48,6 @@ export default class LeaderBoard {
         body: JSON.stringify({ user, score }),
       },
     );
-      console.log(res.json());
     return await res.json();
   }
 }
