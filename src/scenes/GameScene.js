@@ -121,16 +121,15 @@ export default class GameScene extends Phaser.Scene {
     this.physics.pause();
     player.setTint(0xff0000);
     player.anims.play('turn');
-    this.gameOver = true;
     this.LeaderBoard.setScore(GameStorage.getCurrentPlayer(), this.ScoreBoard.score);
     this.scene.start('GameOver');
     this.ScoreBoard.coins = this.coinEarn;
     this.ScoreBoard.score = 0;
+    this.ScoreBoard.resetUI();
   }
 
   create() {
     this.ScoreBoard.displayScoreBoard();
-
     this.bg = this.add.image(400, 300, 'bg');
     this.createPlatforms();
     this.createBottomPlants();
@@ -188,10 +187,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   update() {
-    if (this.gameOver) {
-      return;
-    }
-
+    
     if (cursors.left.isDown) {
       player.setVelocityX(-160);
       player.anims.play('left', true);

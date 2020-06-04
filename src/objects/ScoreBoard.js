@@ -11,7 +11,7 @@ export default class ScoreBoard {
     this.LeaderBoard = new LeaderBoard();
     this.body = document.getElementsByTagName('body');
     this.scoreContainer = DomElements.createDomElement('div', 'class', 'container');
-    this.scoreContainer = '';
+    this.scoreContainer.style.display = 'block';
   }
 
   set score(score) {
@@ -37,16 +37,25 @@ export default class ScoreBoard {
     const title = DomElements.createDomElement('h2');
     title.textContent = 'LeaderBoards';
     const list = DomElements.createDomElement('div', 'class', 'list');
-    const data = await this.LeaderBoard.getScores();
+    try {
+      const data = await this.LeaderBoard.getScores();
 
-    data.forEach((element) => {
-      list.innerHTML += `
-      <p>
-        <span>${data.indexOf(element) + 1}</span>
-        <span>${element[0]}</span>
-        <span>${element[1]}</span>
-      </p>`;
-    });
+      data.forEach((element) => {
+        list.innerHTML += `
+        <p style='display: flex; 
+          justify-content: space-around;
+          margin: 0 20px; 
+          padding: 8px;
+          border-bottom: 1px solid grey;'>
+          <span style='width: 10%;'>${data.indexOf(element) + 1}.</span>
+          <span style='width: 70%;'>${element[0]}</span>
+          <span style='width: 20%;'>${element[1]}</span>
+        </p>`;
+      });
+    } catch (error) {
+      title.textContent = 'Error while fetching leaderboards.'
+    }
+    
 
     leadCont.appendChild(title);
     leadCont.appendChild(list);
@@ -54,11 +63,20 @@ export default class ScoreBoard {
     leadCont.style = `
       color: white;
     `;
+
+    list.style = `
+      overflow-y: hidden;
+    `;
+
+    title.style = `
+      text-align: center;
+      padding: 20px;
+      background-color:  #006699;
+    `;
     this.scoreContainer.appendChild(leadCont);
   }
 
   displayScoreBoard() {
-
     const nameDiv = DomElements.createDomElement('div', 'class', 'name-div');
   
     this.playerName = DomElements.createDomElement('h4', 'class', 'player-name');
@@ -78,15 +96,15 @@ export default class ScoreBoard {
 
     this.scoreContainer.style = `
       position: absolute;
-      width: 230px;
-      height: 500px;
-      top: 20px;
+      width: 300px;
+      height: 600px;
+      top: 10px;
       left: 810px;
-      background-color: rgba(7, 7, 7, 0.9);
+      background-color: #00334d;
     `;
 
     this.playerName.style = `
-      color: aqua;
+      color:  #e6b800;
       padding: 8px;
       font-weight: 900;
       text-transform: uppercase;
@@ -112,6 +130,12 @@ export default class ScoreBoard {
 
     `;
   
+    this.body[0].appendChild(this.scoreContainer);
+  }
+
+  resetUI() {
+    this.scoreContainer.innerHTML = '';
+    this.scoreContainer.style.display = 'none';
     this.body[0].appendChild(this.scoreContainer);
   }
 
