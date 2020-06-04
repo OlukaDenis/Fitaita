@@ -20,17 +20,6 @@ export default class GameOver extends Phaser.Scene {
     });
     // Phaser.Display.Align.In.Center(this.scoreText, this.overDisplay);
 
-    // LeaderBoards
-    this.gameButton = new Button(
-      this,
-      config.width / 2,
-      config.height / 2 - 10,
-      'orange_btn',
-      'orange_btn',
-      'LEADERBOARDS',
-      'LeaderBoards',
-    );
-
     this.homebtn = this.add.sprite(300, 500, 'home').setInteractive().setScale(0.5);
     this.homebtn.on(
       'pointerdown',

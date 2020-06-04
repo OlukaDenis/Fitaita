@@ -1,14 +1,17 @@
-import GameStorage from '../storage/storage';
 import DomElements from '../dom/DomElements';
+import LeaderBoard from '../objects/LeaderBoard';
 
 export default class ScoreBoard {
-
-  constructor(score, coins) {
+  constructor(score, coins, player) {
     this._score = score;
     this._coins = coins;
+    this._player = player;
 
-    this._currentPlayer = GameStorage.getCurrentPlayer();
     this.scoreText = document.createElement('span');
+    this.LeaderBoard = new LeaderBoard();
+    this.body = document.getElementsByTagName('body');
+    this.scoreContainer = DomElements.createDomElement('div', 'class', 'container');
+    this.scoreContainer = '';
   }
 
   set score(score) {
@@ -29,28 +32,51 @@ export default class ScoreBoard {
     return Number(this._coins);
   }
 
+  async displayLeaderBoards() {
+    const leadCont = DomElements.createDomElement('div', 'class', 'board-container');
+    const title = DomElements.createDomElement('h2');
+    title.textContent = 'LeaderBoards';
+    const list = DomElements.createDomElement('div', 'class', 'list');
+    const data = await this.LeaderBoard.getScores();
+
+    data.forEach((element) => {
+      list.innerHTML += `
+      <p>
+        <span>${data.indexOf(element) + 1}</span>
+        <span>${element[0]}</span>
+        <span>${element[1]}</span>
+      </p>`;
+    });
+
+    leadCont.appendChild(title);
+    leadCont.appendChild(list);
+
+    leadCont.style = `
+      color: white;
+    `;
+    this.scoreContainer.appendChild(leadCont);
+  }
+
   displayScoreBoard() {
-    const body = document.getElementsByTagName('body');
-    const scoreContainer = DomElements.createDomElement('div', 'class', 'container');
 
     const nameDiv = DomElements.createDomElement('div', 'class', 'name-div');
-
+  
     this.playerName = DomElements.createDomElement('h4', 'class', 'player-name');
-    this.playerName.textContent = this._currentPlayer;
+    this.playerName.textContent = this._player;
     nameDiv.appendChild(this.playerName);
 
     const coinCont = DomElements.createDomElement('div', 'class', 'coin-container');
     const coinTitle = DomElements.createDomElement('span');
-    coinTitle.textContent = 'Coins: ';  
-    this.scoreText.textContent = `${this._score} / ${this._coins}`;  
+    coinTitle.textContent = 'Coins: ';
+    this.scoreText.textContent = `${this._score} / ${this._coins}`;
     coinCont.appendChild(coinTitle);
     coinCont.appendChild(this.scoreText);
 
-    scoreContainer.appendChild(nameDiv);
-    scoreContainer.appendChild(coinCont);
+    this.scoreContainer.appendChild(nameDiv);
+    this.scoreContainer.appendChild(coinCont);
+    this.displayLeaderBoards();
 
-
-    scoreContainer.style = `
+    this.scoreContainer.style = `
       position: absolute;
       width: 230px;
       height: 500px;
@@ -85,8 +111,8 @@ export default class ScoreBoard {
       font-size: 20px;
 
     `;
-
-    body[0].appendChild(scoreContainer);
+  
+    this.body[0].appendChild(this.scoreContainer);
   }
 
 }

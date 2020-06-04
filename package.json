@@ -23,13 +23,20 @@
   },
   "homepage": "https://github.com/OlukaDenis/Fishtaita#readme",
   "dependencies": {
+    "@babel/runtime": "^7.10.2",
     "phaser": "^3.23.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.1",
+    "@babel/plugin-transform-runtime": "^7.10.1",
+    "@babel/polyfill": "^7.10.1",
     "@babel/preset-env": "^7.10.1",
     "babel-loader": "^8.1.0",
     "copy-webpack-plugin": "^6.0.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-import-resolver-webpack": "^0.12.1",
+    "eslint-plugin-import": "^2.20.2",
     "file-loader": "^6.0.0",
     "raw-loader": "^4.0.1",
     "webpack": "^4.43.0",

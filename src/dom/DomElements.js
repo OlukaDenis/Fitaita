@@ -1,8 +1,7 @@
 const DomElements = (() => {
-
   const createDomElement = (tag, attr = null, value = null) => {
     let result = null;
-    
+
     if (tag === 'div') {
       result = document.createElement(tag);
     } else if (tag === 'p') {
@@ -24,14 +23,13 @@ const DomElements = (() => {
     if (!(attr === null && value === null)) {
       result.setAttribute(attr, value);
     }
-    
-    return result;
-  }
 
-  return {
-    createDomElement
+    return result;
   };
 
+  return {
+    createDomElement,
+  };
 })();
 
 export default DomElements;

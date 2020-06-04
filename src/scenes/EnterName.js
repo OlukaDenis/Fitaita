@@ -1,8 +1,8 @@
 /* eslint-disable import/no-unresolved */
 import Phaser from 'phaser';
-import config from '../config/config';
 import DomElements from '../dom/DomElements';
 import GameStorage from '../storage/storage';
+import LeaderBoard from '../objects/LeaderBoard';
 
 export default class EnterName extends Phaser.Scene {
   constructor() {
@@ -11,6 +11,7 @@ export default class EnterName extends Phaser.Scene {
 
 
   create() {
+    this.LeaderBoard = new LeaderBoard();
     this.add.image(400, 300, 'bg');
 
     const body = document.getElementsByTagName('body');
@@ -19,26 +20,36 @@ export default class EnterName extends Phaser.Scene {
     const form = DomElements.createDomElement('form');
     this.nameInput = DomElements.createDomElement('input', 'type', 'text');
     this.nameInput.setAttribute('placeholder', 'Enter your name');
+    this.errorText = DomElements.createDomElement('p');
+    this.errorText.style.display = 'none';
     this.submit = DomElements.createDomElement('button', 'type', 'submit');
     this.submit.textContent = 'START';
 
-    function handleForm(event) {
-      event.preventDefault();
-    }
-    form.addEventListener('submit', handleForm);
 
-    this.submit.addEventListener('click', () => {
-      GameStorage.currentPlayer(this.nameInput.value);
-      this.nameInput.value = '';
-      this.scene.start('Game');
-      nameDiv.style.display = 'none';
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
     });
 
-    function handleForm(event) {
-      event.preventDefault();
-    }
+    this.submit.addEventListener('click', async () => {
+      if (this.nameInput.value === '' || this.nameInput === null) {
+        this.errorText.style = ` color: red; display: block;`;
+        this.errorText.textContent = 'Pleasr provide your name!';
+      } else {
+        if (await this.LeaderBoard.nameExists(this.nameInput.value)) {
+          this.errorText.style = ` color: red; display: block;`;
+          this.errorText.textContent = 'Ooops!...Name already taken!';
+        } else {
+          GameStorage.currentPlayer(this.nameInput.value);
+          this.nameInput.value = '';
+          this.scene.start('Game');
+          nameDiv.style.display = 'none';
+        }
+      }      
+      
+    });
 
     form.appendChild(this.nameInput);
+    form.appendChild(this.errorText);
     form.appendChild(this.submit);
     nameDiv.appendChild(form);
 
@@ -86,6 +97,5 @@ export default class EnterName extends Phaser.Scene {
     `;
 
     body[0].appendChild(nameDiv);
-
   }
 }

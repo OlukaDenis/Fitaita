@@ -1,8 +1,9 @@
 /* eslint-disable import/no-unresolved */
 import Phaser from 'phaser';
 import ScoreBoard from '../objects/ScoreBoard';
+import GameStorage from '../storage/storage';
+import LeaderBoard from '../objects/LeaderBoard';
 
-let score = 0;
 let platforms;
 let player;
 let coins;
@@ -20,21 +21,22 @@ export default class GameScene extends Phaser.Scene {
     this.gameOver = false;
 
     this.coinCount = 49;
-    this.coinEarn = (this.coinCount + 1) * 5
-    this.ScoreBoard = new ScoreBoard(0, this.coinEarn);
+    this.coinEarn = (this.coinCount + 1) * 5;
+    this.ScoreBoard = new ScoreBoard(0, this.coinEarn, GameStorage.getCurrentPlayer());
+    this.LeaderBoard = new LeaderBoard();
   }
 
   createPlatforms() {
     platforms = this.physics.add.staticGroup();
 
-    //level 1
+    // level 1
     platforms.create(1600, 900, 'ground');
     platforms.create(1200, 900, 'ground');
     platforms.create(800, 900, 'ground');
     platforms.create(400, 900, 'ground');
     platforms.create(150, 900, 'ground');
 
-    //level 2
+    // level 2
     platforms.create(1500, 600, 'ground');
     platforms.create(950, 750, 'ground');
     platforms.create(420, 600, 'ground');
@@ -48,7 +50,7 @@ export default class GameScene extends Phaser.Scene {
     platforms.create(900, 200, 'ground');
   }
 
-  createBottomPlants () {
+  createBottomPlants() {
     this.add.image(1700, 960, 'water_ground');
     this.add.image(950, 960, 'water_ground');
     this.add.image(200, 960, 'water_ground');
@@ -75,14 +77,14 @@ export default class GameScene extends Phaser.Scene {
     this.ScoreBoard.score += 5;
 
     if (coins.countActive(true) === 0) {
-     this.ScoreBoard.coins += this.coinEarn;
+      this.ScoreBoard.coins += this.coinEarn;
       coins.children.iterate((child) => {
         child.enableBody(true, child.x, 0, true, true);
       });
 
-      const x = (player.x < 400) 
-      ? Phaser.Math.Between(400, 1000) 
-      : Phaser.Math.Between(200, 1600);
+      const x = (player.x < 400)
+        ? Phaser.Math.Between(400, 1000)
+        : Phaser.Math.Between(200, 1600);
 
       const xdistance = Phaser.Math.Between(400, 1600);
       const ydistance = Phaser.Math.Between(200, 900);
@@ -114,13 +116,25 @@ export default class GameScene extends Phaser.Scene {
     }
   }
 
+
+  hitBomb(player) {
+    this.physics.pause();
+    player.setTint(0xff0000);
+    player.anims.play('turn');
+    this.gameOver = true;
+    this.LeaderBoard.setScore(GameStorage.getCurrentPlayer(), this.ScoreBoard.score);
+    this.scene.start('GameOver');
+    this.ScoreBoard.coins = this.coinEarn;
+    this.ScoreBoard.score = 0;
+  }
+
   create() {
     this.ScoreBoard.displayScoreBoard();
-    
+
     this.bg = this.add.image(400, 300, 'bg');
     this.createPlatforms();
     this.createBottomPlants();
-    
+
     player = this.physics.add.sprite(70, 700, 'dude');
 
     player.setBounce(0.1);
@@ -192,14 +206,5 @@ export default class GameScene extends Phaser.Scene {
     if (cursors.up.isDown && player.body.touching.down) {
       player.setVelocityY(-360);
     }
-  }
-
-  hitBomb(player) {
-    this.physics.pause();
-    player.setTint(0xff0000);
-    player.anims.play('turn');
-    // gameOver = true;
-    score = 0;
-    this.scene.start('GameOver');
   }
 }
