@@ -1,4 +1,6 @@
 /* eslint-disable no-undef */
+/* eslint-disable no-underscore-dangle */
+
 import LeaderBoard from '../src/objects/LeaderBoard';
 
 describe('LeaderBoard connection test', () => {
