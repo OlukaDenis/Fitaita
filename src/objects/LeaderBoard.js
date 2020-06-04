@@ -1,4 +1,5 @@
 /* eslint-disable import/no-unresolved */
+/* eslint-disable no-underscore-dangle */
 const fetch = require('node-fetch');
 
 export default class LeaderBoard {
@@ -6,13 +7,13 @@ export default class LeaderBoard {
     this._gameId = 'NHD9GAF70gpUV9YSSrHD';
   }
 
-  sorting(obj){
-    const array = [];
+  sorting(obj) {
+    this.array = [];
     for (let i = 0; i < obj.length; i += 1) {
-      array.push([obj[i].user, obj[i].score]);
+      this.array.push([obj[i].user, obj[i].score]);
     }
-    return Array.from(array).sort((a, b) => b[1] - a[1]);
-  };
+    return Array.from(this.array).sort((a, b) => b[1] - a[1]);
+  }
 
   async getScores() {
     const res = await fetch(
@@ -23,7 +24,7 @@ export default class LeaderBoard {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-      }
+      },
     );
 
     const response = await res.json();
@@ -48,6 +49,6 @@ export default class LeaderBoard {
         body: JSON.stringify({ user, score }),
       },
     );
-    return await res.json();
+    return res.json();
   }
 }

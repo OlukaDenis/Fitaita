@@ -1,7 +1,6 @@
-import ScoreBoard from '../../src/objects/ScoreBoard';
+import ScoreBoard from '../src/objects/ScoreBoard';
 
 describe('Display the scoreboard', () => {
-
   let scoreboard;
   beforeEach(() => { scoreboard = new ScoreBoard(200, 500, 'Denis'); });
 
@@ -22,5 +21,4 @@ describe('Display the scoreboard', () => {
     scoreboard.coins = 750;
     expect(scoreboard.coins).toEqual(750);
   });
-
 });

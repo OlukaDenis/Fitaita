@@ -1,7 +1,6 @@
-import GameStorage from '../../src/storage/storage';
+import GameStorage from '../src/storage/storage';
 
 describe('Local storage ', () => {
-
   test('It should save current player', () => {
     expect(typeof GameStorage.currentPlayer('Denis')).toBe('string');
   });

@@ -32,20 +32,17 @@ export default class EnterName extends Phaser.Scene {
 
     this.submit.addEventListener('click', async () => {
       if (this.nameInput.value === '' || this.nameInput === null) {
-        this.errorText.style = ` color: red; display: block;`;
+        this.errorText.style = ' color: red; display: block;';
         this.errorText.textContent = 'Pleasr provide your name!';
+      } else if (await this.LeaderBoard.nameExists(this.nameInput.value)) {
+        this.errorText.style = ' color: red; display: block;';
+        this.errorText.textContent = 'Ooops!...Name already taken!';
       } else {
-        if (await this.LeaderBoard.nameExists(this.nameInput.value)) {
-          this.errorText.style = ` color: red; display: block;`;
-          this.errorText.textContent = 'Ooops!...Name already taken!';
-        } else {
-          GameStorage.currentPlayer(this.nameInput.value);
-          this.nameInput.value = '';
-          this.scene.start('Game');
-          nameDiv.style.display = 'none';
-        }
-      }      
-      
+        GameStorage.currentPlayer(this.nameInput.value);
+        this.nameInput.value = '';
+        this.scene.start('Game');
+        nameDiv.style.display = 'none';
+      }
     });
 
     form.appendChild(this.nameInput);

@@ -1,5 +1,6 @@
+/* eslint-disable no-underscore-dangle */
 import DomElements from '../dom/DomElements';
-import LeaderBoard from '../objects/LeaderBoard';
+import LeaderBoard from './LeaderBoard';
 
 export default class ScoreBoard {
   constructor(score, coins, player) {
@@ -53,9 +54,9 @@ export default class ScoreBoard {
         </p>`;
       });
     } catch (error) {
-      title.textContent = 'Error while fetching leaderboards.'
+      title.textContent = 'Error while fetching leaderboards.';
     }
-    
+
 
     leadCont.appendChild(title);
     leadCont.appendChild(list);
@@ -78,7 +79,7 @@ export default class ScoreBoard {
 
   displayScoreBoard() {
     const nameDiv = DomElements.createDomElement('div', 'class', 'name-div');
-  
+
     this.playerName = DomElements.createDomElement('h4', 'class', 'player-name');
     this.playerName.textContent = this._player;
     nameDiv.appendChild(this.playerName);
@@ -129,7 +130,7 @@ export default class ScoreBoard {
       font-size: 20px;
 
     `;
-  
+
     this.body[0].appendChild(this.scoreContainer);
   }
 
@@ -138,5 +139,4 @@ export default class ScoreBoard {
     this.scoreContainer.style.display = 'none';
     this.body[0].appendChild(this.scoreContainer);
   }
-
 }
