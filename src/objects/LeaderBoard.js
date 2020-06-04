@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 
 export default class LeaderBoard {
   constructor() {
-    this._gameId = 'NHD9GAF70gpUV9YSSrHD';
+    this._gameId = 'YHzBwKdOC7ODCy4rz9Mv';
   }
 
   sorting(obj) {
