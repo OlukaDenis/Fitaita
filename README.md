@@ -41,6 +41,10 @@ All sprites, images and sounds used in this game are from [Open Game Art](https:
 - Adding more levels
 - Defence mechanisms
 
+## To the TSEs
+According to the first review, I was marked incompetence via time management. I would like to let you know that I had requested for more time from the support team.
+Thanks!
+
 ## Project Setup
 
 Use the [git](https://git-scm.com/downloads) to clone the project to your local machine.

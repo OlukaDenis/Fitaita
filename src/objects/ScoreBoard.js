@@ -8,8 +8,8 @@ export default class ScoreBoard {
     this._coins = coins;
     this._player = player;
 
-    this.scoreText = document.createElement('span');
     this.LeaderBoard = new LeaderBoard();
+    this.scoreText = document.createElement('span');
     this.body = document.getElementsByTagName('body');
     this.scoreContainer = DomElements.createDomElement('div', 'class', 'container');
     this.scoreContainer.style.display = 'block';
