@@ -1,0 +1,55 @@
+{
+  "name": "fitaita",
+  "version": "1.0.0",
+  "description": "A 2d game with Js and phaserjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watchAll",
+    "build": "webpack --mode production",
+    "dev": "webpack --watch --mode development",
+    "start": "webpack && webpack-dev-server --port=8000 --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OlukaDenis/Fitaita.git"
+  },
+  "keywords": [
+    "phaser"
+  ],
+  "author": "Denis Oluka",
+  "license": "ISC",
+  "jest": {
+    "setupFiles": [
+      "jest-canvas-mock"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/OlukaDenis/Fitaita/issues"
+  },
+  "homepage": "https://github.com/OlukaDenis/Fitaita#readme",
+  "dependencies": {
+    "@babel/runtime": "^7.10.2",
+    "node-fetch": "^2.6.0",
+    "copy-webpack-plugin": "^6.0.1",
+    "phaser": "^3.23.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.1",
+    "@babel/plugin-transform-runtime": "^7.10.1",
+    "@babel/polyfill": "^7.10.1",
+    "@babel/preset-env": "^7.10.1",
+    "babel-loader": "^8.1.0",
+    "copy-webpack-plugin": "^6.0.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-import-resolver-webpack": "^0.12.1",
+    "eslint-plugin-import": "^2.20.2",
+    "file-loader": "^6.0.0",
+    "jest": "^26.0.1",
+    "jest-canvas-mock": "^2.2.0",
+    "raw-loader": "^4.0.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
