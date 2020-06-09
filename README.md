@@ -44,9 +44,31 @@ All sprites, images and sounds used in this game are from [Open Game Art](https:
 - Adding more levels
 - Defence mechanisms
 
-## To the TSEs
-According to the first review, I was marked incompetence via time management. I would like to let you know that I had requested for more time from the support team.
-Thanks!
+## Skills
+
+#### Tools
+- Use linters (code standards) ![MASTERY](https://raw.githubusercontent.com/ampaire/phaserRPG/feature/assets/grade/masteryBadge.png)
+- Maintain professional Github repos ![MASTERY](https://raw.githubusercontent.com/ampaire/phaserRPG/feature/assets/grade/masteryBadge.png)
+- Deploy apps (Heroku, Netlify) ![MASTERY](https://raw.githubusercontent.com/ampaire/phaserRPG/feature/assets/grade/masteryBadge.png)
+
+#### Soft Skills
+- Strong English written communication ![MASTERY](https://raw.githubusercontent.com/ampaire/phaserRPG/feature/assets/grade/masteryBadge.png)
+- Ability to communicate information effectively to non-technical people ![MASTERY](https://raw.githubusercontent.com/ampaire/phaserRPG/feature/assets/grade/masteryBadge.png)
+- Ability to translate business requirements into software solutions ![MASTERY](https://raw.githubusercontent.com/ampaire/phaserRPG/feature/assets/grade/masteryBadge.png)
+- Sets high standards of performance to oneself ![MASTERY](https://raw.githubusercontent.com/ampaire/phaserRPG/feature/assets/grade/masteryBadge.png)
+- Shows a desire to take personal responsibility to complete tasks and solve problems ![MASTERY](https://raw.githubusercontent.com/ampaire/phaserRPG/feature/assets/grade/masteryBadge.png)
+- Ability to multitask and effectively manage time and prioritzation ![MASTERY](https://raw.githubusercontent.com/ampaire/phaserRPG/feature/assets/grade/masteryBadge.png)
+
+#### Technical Skills
+- Create effective JavaScript code that solves the problem ![MASTERY](https://raw.githubusercontent.com/ampaire/phaserRPG/feature/assets/grade/masteryBadge.png)
+- Encapsulate JS code in modules ![MASTERY](https://raw.githubusercontent.com/ampaire/phaserRPG/feature/assets/grade/masteryBadge.png)
+- Use Webpack ![MASTERY](https://raw.githubusercontent.com/ampaire/phaserRPG/feature/assets/grade/masteryBadge.png)
+- Use EcmaScript+ ![MASTERY](https://raw.githubusercontent.com/ampaire/phaserRPG/feature/assets/grade/masteryBadge.png)
+- Deal with async code ![MASTERY](https://raw.githubusercontent.com/ampaire/phaserRPG/feature/assets/grade/masteryBadge.png)
+- Send and receive data from a back-end endpoint ![MASTERY](https://raw.githubusercontent.com/ampaire/phaserRPG/feature/assets/grade/masteryBadge.png)
+- Use JSON format ![MASTERY](https://raw.githubusercontent.com/ampaire/phaserRPG/feature/assets/grade/masteryBadge.png)
+- Use DOM (read/write data) listen to events ![MASTERY](https://raw.githubusercontent.com/ampaire/phaserRPG/feature/assets/grade/masteryBadge.png)
+- Test JS code ![MASTERY](https://raw.githubusercontent.com/ampaire/phaserRPG/feature/assets/grade/masteryBadge.png)
 
 ## Project Setup
 
