@@ -13,6 +13,10 @@ Two man-eater fishes are being introduced to the gameplay starting from level tw
 ### Live link
 [Fitaita live link](https://fitaita.netlify.app/)
 
+### Video
+[Video Demo Link](https://www.loom.com/share/cce6d88fe71d46aab5d33309bf8bc308)
+
+
 ## Gameplay
 ###### Player
 Player (Fita) uses the direction keys( up: to jump and move to upper blocks, down: to move down in a faster way, left: to move left, right: to move right). He continues on in quest to collect enough coins to defeat the power of the fish.
