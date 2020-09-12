@@ -29,7 +29,7 @@
   "homepage": "https://github.com/OlukaDenis/Fitaita#readme",
   "dependencies": {
     "@babel/runtime": "^7.10.2",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "copy-webpack-plugin": "^6.0.1",
     "phaser": "^3.23.0"
   },
